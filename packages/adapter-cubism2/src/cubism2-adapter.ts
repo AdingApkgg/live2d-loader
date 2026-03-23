@@ -55,7 +55,7 @@ export class Cubism2Adapter implements ICubismAdapter {
   readonly defaultCorePath = DEFAULT_CUBISM2_CORE_PATH;
 
   private gl: WebGLRenderingContext | WebGL2RenderingContext | null = null;
-  private cubism2Matrix: number[] = [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1];
+  private cubism2Matrix: number[] = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
   private startTime = performance.now();
   private eyeBlinkTimer = 0;
   private nextBlinkTime = 2 + Math.random() * 3;
@@ -75,10 +75,13 @@ export class Cubism2Adapter implements ICubismAdapter {
         if (this.isCoreLoaded()) {
           resolve();
         } else {
-          reject(new Error('[Cubism2Adapter] Core script loaded but Live2D not found in global scope.'));
+          reject(
+            new Error('[Cubism2Adapter] Core script loaded but Live2D not found in global scope.'),
+          );
         }
       };
-      script.onerror = () => reject(new Error(`[Cubism2Adapter] Failed to load Cubism 2 Core from: ${url}`));
+      script.onerror = () =>
+        reject(new Error(`[Cubism2Adapter] Failed to load Cubism 2 Core from: ${url}`));
       document.head.appendChild(script);
     });
   }
@@ -88,7 +91,10 @@ export class Cubism2Adapter implements ICubismAdapter {
     return 'model' in json && !('FileReferences' in json);
   }
 
-  async createModel(settings: ModelSettings, options?: InternalModelOptions): Promise<InternalModel> {
+  async createModel(
+    settings: ModelSettings,
+    options?: InternalModelOptions,
+  ): Promise<InternalModel> {
     if (!window.Live2D || !window.Live2DModelWebGL) {
       throw new Error('[Cubism2Adapter] Live2D / Live2DModelWebGL is not available.');
     }
@@ -97,7 +103,7 @@ export class Cubism2Adapter implements ICubismAdapter {
     if (!gl) {
       throw new Error(
         '[Cubism2Adapter] WebGL context is required for Cubism 2 models. ' +
-        'Ensure the renderer exposes getGL().',
+          'Ensure the renderer exposes getGL().',
       );
     }
 
@@ -120,17 +126,12 @@ export class Cubism2Adapter implements ICubismAdapter {
     // Build a 4x4 column-major matrix that maps model pixel coords → clip space.
     // Same logic as L2DModelMatrix: setWidth(2) + setCenterPosition(0, 0)
     const sx = 2 / cw;
-    const sy = -sx;   // negative to flip Y, maintain aspect ratio based on width
-    const tx = -1;    // shift so left edge is at clip x = -1
-    const ty = -sy * ch / 2;  // center vertically
+    const sy = -sx; // negative to flip Y, maintain aspect ratio based on width
+    const tx = -1; // shift so left edge is at clip x = -1
+    const ty = (-sy * ch) / 2; // center vertically
 
     // Column-major 4x4
-    const mat = [
-      sx, 0,  0, 0,
-      0,  sy, 0, 0,
-      0,  0,  1, 0,
-      tx, ty, 0, 1,
-    ];
+    const mat = [sx, 0, 0, 0, 0, sy, 0, 0, 0, 0, 1, 0, tx, ty, 0, 1];
 
     // Apply layout overrides from model JSON
     const layout = settings.layout;
@@ -160,12 +161,7 @@ export class Cubism2Adapter implements ICubismAdapter {
 
     this.cubism2Matrix = mat;
 
-    const modelMatrix = new Float32Array([
-      1, 0, 0, 0,
-      0, 1, 0, 0,
-      0, 0, 1, 0,
-      0, 0, 0, 1,
-    ]);
+    const modelMatrix = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
 
     return {
       id: '',
@@ -300,8 +296,10 @@ export class Cubism2Adapter implements ICubismAdapter {
 }
 
 function isPointInBounds(px: number, py: number, vertices: Float32Array): boolean {
-  let minX = Infinity, maxX = -Infinity;
-  let minY = Infinity, maxY = -Infinity;
+  let minX = Infinity,
+    maxX = -Infinity;
+  let minY = Infinity,
+    maxY = -Infinity;
 
   for (let i = 0; i < vertices.length; i += 2) {
     const vx = vertices[i]!;

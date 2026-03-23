@@ -38,14 +38,14 @@ renderer-webgl     renderer-pixi
 
 ## Packages
 
-| Package | Description |
-|---------|-------------|
-| [`@live2d-loader/core`](./packages/core) | Framework-agnostic engine with pipeline, events, and model management |
-| [`@live2d-loader/element`](./packages/element) | Lit Web Components: `<live2d-model>` and `<live2d-widget>` |
-| [`@live2d-loader/adapter-cubism2`](./packages/adapter-cubism2) | Adapter for Cubism 2.x models (`.moc`) |
-| [`@live2d-loader/adapter-cubism5`](./packages/adapter-cubism5) | Adapter for Cubism 4/5 models (`.moc3`) |
-| [`@live2d-loader/renderer-webgl`](./packages/renderer-webgl) | Built-in WebGL2 renderer, zero dependencies |
-| [`@live2d-loader/renderer-pixi`](./packages/renderer-pixi) | PixiJS 8 renderer (alternative) |
+| Package                                                        | Description                                                           |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [`@live2d-loader/core`](./packages/core)                       | Framework-agnostic engine with pipeline, events, and model management |
+| [`@live2d-loader/element`](./packages/element)                 | Lit Web Components: `<live2d-model>` and `<live2d-widget>`            |
+| [`@live2d-loader/adapter-cubism2`](./packages/adapter-cubism2) | Adapter for Cubism 2.x models (`.moc`)                                |
+| [`@live2d-loader/adapter-cubism5`](./packages/adapter-cubism5) | Adapter for Cubism 4/5 models (`.moc3`)                               |
+| [`@live2d-loader/renderer-webgl`](./packages/renderer-webgl)   | Built-in WebGL2 renderer, zero dependencies                           |
+| [`@live2d-loader/renderer-pixi`](./packages/renderer-pixi)     | PixiJS 8 renderer (alternative)                                       |
 
 ## Quick Start
 
@@ -172,15 +172,15 @@ https://esm.sh/@live2d-loader/element@0.1.0
 
 The `<live2d-model>` Web Component works in all frameworks. See the guide for your framework:
 
-| Framework | Guide | Key Notes |
-|-----------|-------|-----------|
-| React | [docs/frameworks/react.md](./docs/frameworks/react.md) | Use `ref` for `configure()`; JSX type declaration needed |
-| Vue | [docs/frameworks/vue.md](./docs/frameworks/vue.md) | Add `isCustomElement` compiler option |
-| Nuxt | [docs/frameworks/nuxt.md](./docs/frameworks/nuxt.md) | Wrap with `<ClientOnly>` for SSR |
-| Next.js | [docs/frameworks/nextjs.md](./docs/frameworks/nextjs.md) | Use `'use client'` + `dynamic(..., { ssr: false })` |
-| SolidJS | [docs/frameworks/solidjs.md](./docs/frameworks/solidjs.md) | Native custom element support |
-| Svelte | [docs/frameworks/svelte.md](./docs/frameworks/svelte.md) | Works out of the box |
-| Angular | [docs/frameworks/angular.md](./docs/frameworks/angular.md) | Add `CUSTOM_ELEMENTS_SCHEMA` |
+| Framework | Guide                                                      | Key Notes                                                |
+| --------- | ---------------------------------------------------------- | -------------------------------------------------------- |
+| React     | [docs/frameworks/react.md](./docs/frameworks/react.md)     | Use `ref` for `configure()`; JSX type declaration needed |
+| Vue       | [docs/frameworks/vue.md](./docs/frameworks/vue.md)         | Add `isCustomElement` compiler option                    |
+| Nuxt      | [docs/frameworks/nuxt.md](./docs/frameworks/nuxt.md)       | Wrap with `<ClientOnly>` for SSR                         |
+| Next.js   | [docs/frameworks/nextjs.md](./docs/frameworks/nextjs.md)   | Use `'use client'` + `dynamic(..., { ssr: false })`      |
+| SolidJS   | [docs/frameworks/solidjs.md](./docs/frameworks/solidjs.md) | Native custom element support                            |
+| Svelte    | [docs/frameworks/svelte.md](./docs/frameworks/svelte.md)   | Works out of the box                                     |
+| Angular   | [docs/frameworks/angular.md](./docs/frameworks/angular.md) | Add `CUSTOM_ELEMENTS_SCHEMA`                             |
 
 You can also use the Core API (`createLive2DLoader`) directly with a `<canvas>` in any framework — see each guide for examples.
 
@@ -193,7 +193,9 @@ loader.on('load:start', (e) => console.log('Loading:', e.source));
 loader.on('load:complete', (e) => console.log('Loaded:', e.modelId));
 loader.on('load:error', (e) => console.error('Error:', e.error));
 loader.on('hit', (e) => console.log('Hit area:', e.hitArea));
-loader.on('render:frame', (e) => { /* per-frame callback */ });
+loader.on('render:frame', (e) => {
+  /* per-frame callback */
+});
 ```
 
 ## Development

@@ -98,13 +98,7 @@ export class Live2DComponent implements AfterViewInit {
 ## Core API Usage
 
 ```ts
-import {
-  Component,
-  ElementRef,
-  ViewChild,
-  AfterViewInit,
-  OnDestroy,
-} from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { createLive2DLoader } from '@live2d-loader/core';
 import { WebGLRenderer } from '@live2d-loader/renderer-webgl';
 import { Cubism2Adapter } from '@live2d-loader/adapter-cubism2';

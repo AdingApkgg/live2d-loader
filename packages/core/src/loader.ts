@@ -94,19 +94,13 @@ export class Live2DLoader {
   }
 
   /** Subscribe to events */
-  on<K extends Live2DEventName>(
-    event: K,
-    listener: (payload: Live2DEventMap[K]) => void,
-  ): this {
+  on<K extends Live2DEventName>(event: K, listener: (payload: Live2DEventMap[K]) => void): this {
     this.events.on(event, listener);
     return this;
   }
 
   /** Unsubscribe from events */
-  off<K extends Live2DEventName>(
-    event: K,
-    listener: (payload: Live2DEventMap[K]) => void,
-  ): this {
+  off<K extends Live2DEventName>(event: K, listener: (payload: Live2DEventMap[K]) => void): this {
     this.events.off(event, listener);
     return this;
   }

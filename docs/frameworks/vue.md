@@ -61,13 +61,7 @@ function onLoad(e: Event) {
 </script>
 
 <template>
-  <live2d-model
-    ref="modelRef"
-    :src="modelSrc"
-    :width="300"
-    :height="400"
-    @load="onLoad"
-  />
+  <live2d-model ref="modelRef" :src="modelSrc" :width="300" :height="400" @load="onLoad" />
 </template>
 ```
 

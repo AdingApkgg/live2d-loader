@@ -30,9 +30,9 @@ export const detectVersion: LoadMiddleware = async (ctx, next) => {
     const keys = Object.keys(json as object).join(', ');
     throw new Error(
       `[Live2DLoader] Unrecognized model settings format. ` +
-      `Expected a Cubism 2 model.json (with "model" + "textures") or ` +
-      `Cubism 3/4/5 model3.json (with "FileReferences"). ` +
-      `Got keys: ${keys}`,
+        `Expected a Cubism 2 model.json (with "model" + "textures") or ` +
+        `Cubism 3/4/5 model3.json (with "FileReferences"). ` +
+        `Got keys: ${keys}`,
     );
   }
 
@@ -47,7 +47,7 @@ export const detectVersion: LoadMiddleware = async (ctx, next) => {
     if (!explicit) {
       throw new Error(
         `[Live2DLoader] No adapter found for Cubism version "${ctx.settings.version}". ` +
-        `Registered adapters: ${ctx.adapters.map((a) => a.version).join(', ')}`,
+          `Registered adapters: ${ctx.adapters.map((a) => a.version).join(', ')}`,
       );
     }
     ctx.adapter = explicit;

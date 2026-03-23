@@ -55,10 +55,10 @@ export class Live2DWidgetElement extends LitElement {
       align-items: center;
       pointer-events: none;
     }
-    :host([position="right"]) {
+    :host([position='right']) {
       right: var(--widget-side);
     }
-    :host([position="left"]) {
+    :host([position='left']) {
       left: var(--widget-side);
     }
 
@@ -75,7 +75,9 @@ export class Live2DWidgetElement extends LitElement {
       line-height: 1.5;
       opacity: 0;
       transform: translateY(8px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
     }
     .bubble.visible {
       opacity: 1;
@@ -119,7 +121,9 @@ export class Live2DWidgetElement extends LitElement {
       color: var(--toolbar-color);
       cursor: pointer;
       font-size: 14px;
-      transition: color 0.2s, background 0.2s;
+      transition:
+        color 0.2s,
+        background 0.2s;
     }
     .toolbar button:hover {
       color: var(--toolbar-hover);
@@ -154,7 +158,7 @@ export class Live2DWidgetElement extends LitElement {
       margin: 6px 0;
       cursor: pointer;
     }
-    .settings-panel input[type="radio"] {
+    .settings-panel input[type='radio'] {
       margin: 0;
     }
 
@@ -233,9 +237,7 @@ export class Live2DWidgetElement extends LitElement {
     const currentModel = this.getCurrentModel();
 
     return html`
-      <div class="bubble ${this.tipVisible ? 'visible' : ''}">
-        ${this.tipText}
-      </div>
+      <div class="bubble ${this.tipVisible ? 'visible' : ''}">${this.tipText}</div>
 
       <div class="model-container">
         <live2d-model
@@ -250,28 +252,34 @@ export class Live2DWidgetElement extends LitElement {
       </div>
 
       <div class="toolbar">
-        ${this.models.length > 1 ? html`
-          <button @click=${this.switchModel}>&#x1f504;</button>
-        ` : nothing}
+        ${this.models.length > 1
+          ? html` <button @click=${this.switchModel}>&#x1f504;</button> `
+          : nothing}
         <button @click=${this.captureScreenshot}>&#x1f4f7;</button>
         <button @click=${this.toggleSettings}>&#x2699;</button>
         <button @click=${this.hide}>&#x2716;</button>
       </div>
 
-      ${this.showSettings ? html`
-        <div class="settings-panel">
-          <h4>Model</h4>
-          ${this.models.map((m, i) => html`
-            <label>
-              <input type="radio" name="model"
-                .checked=${i === this.currentModelIndex}
-                @change=${() => this.selectModel(i)}
-              />
-              ${m.name}
-            </label>
-          `)}
-        </div>
-      ` : nothing}
+      ${this.showSettings
+        ? html`
+            <div class="settings-panel">
+              <h4>Model</h4>
+              ${this.models.map(
+                (m, i) => html`
+                  <label>
+                    <input
+                      type="radio"
+                      name="model"
+                      .checked=${i === this.currentModelIndex}
+                      @change=${() => this.selectModel(i)}
+                    />
+                    ${m.name}
+                  </label>
+                `,
+              )}
+            </div>
+          `
+        : nothing}
     `;
   }
 

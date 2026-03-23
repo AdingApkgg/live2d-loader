@@ -36,7 +36,9 @@ export class DefaultAssetResolver implements IAssetResolver {
   resolveRelative(relativePath: string, baseUrl: string): string {
     if (this.isFullUrl(relativePath)) return relativePath;
 
-    const base = baseUrl.endsWith('/') ? baseUrl : baseUrl.substring(0, baseUrl.lastIndexOf('/') + 1);
+    const base = baseUrl.endsWith('/')
+      ? baseUrl
+      : baseUrl.substring(0, baseUrl.lastIndexOf('/') + 1);
     return new URL(relativePath, base).href;
   }
 
@@ -67,7 +69,9 @@ export class DefaultAssetResolver implements IAssetResolver {
   private resolveBuiltin(name: string): ResolvedAsset {
     const entry = this.builtins.get(name);
     if (!entry) {
-      throw new Error(`[Live2DLoader] Built-in model "${name}" not found. Register it first with registerBuiltin().`);
+      throw new Error(
+        `[Live2DLoader] Built-in model "${name}" not found. Register it first with registerBuiltin().`,
+      );
     }
     return this.resolveUrl(entry.url);
   }

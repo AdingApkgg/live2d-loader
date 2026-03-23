@@ -5,14 +5,7 @@ import type {
   TextureData,
   BlendMode,
 } from '@live2d-loader/core';
-import {
-  Application,
-  Container,
-  Mesh,
-  MeshGeometry,
-  Texture,
-  ImageSource,
-} from 'pixi.js';
+import { Application, Container, Mesh, MeshGeometry, Texture, ImageSource } from 'pixi.js';
 
 /**
  * PixiJS 8 renderer implementation.

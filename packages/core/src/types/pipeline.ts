@@ -37,7 +37,4 @@ export interface LoadContext {
 }
 
 /** A single step in the loading pipeline */
-export type LoadMiddleware = (
-  context: LoadContext,
-  next: () => Promise<void>,
-) => Promise<void>;
+export type LoadMiddleware = (context: LoadContext, next: () => Promise<void>) => Promise<void>;

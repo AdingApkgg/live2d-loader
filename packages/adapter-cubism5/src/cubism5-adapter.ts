@@ -73,8 +73,7 @@ const _VERTEX_POSITIONS_CHANGED = 1 << 4;
 export class Cubism5Adapter implements ICubismAdapter {
   readonly version: CubismVersion = 'cubism5';
 
-  readonly defaultCorePath =
-    'https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js';
+  readonly defaultCorePath = 'https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js';
 
   isCoreLoaded(): boolean {
     return typeof window !== 'undefined' && !!window.Live2DCubismCore;
@@ -91,10 +90,15 @@ export class Cubism5Adapter implements ICubismAdapter {
         if (this.isCoreLoaded()) {
           resolve();
         } else {
-          reject(new Error('[Cubism5Adapter] Core script loaded but Live2DCubismCore not found in global scope.'));
+          reject(
+            new Error(
+              '[Cubism5Adapter] Core script loaded but Live2DCubismCore not found in global scope.',
+            ),
+          );
         }
       };
-      script.onerror = () => reject(new Error(`[Cubism5Adapter] Failed to load Cubism Core from: ${url}`));
+      script.onerror = () =>
+        reject(new Error(`[Cubism5Adapter] Failed to load Cubism Core from: ${url}`));
       document.head.appendChild(script);
     });
   }
@@ -104,7 +108,10 @@ export class Cubism5Adapter implements ICubismAdapter {
     return 'FileReferences' in json;
   }
 
-  async createModel(settings: ModelSettings, _options?: InternalModelOptions): Promise<InternalModel> {
+  async createModel(
+    settings: ModelSettings,
+    _options?: InternalModelOptions,
+  ): Promise<InternalModel> {
     const core = window.Live2DCubismCore;
     if (!core) {
       throw new Error('[Cubism5Adapter] Cubism Core is not loaded.');
@@ -126,12 +133,7 @@ export class Cubism5Adapter implements ICubismAdapter {
       throw new Error('[Cubism5Adapter] Failed to create Model from Moc.');
     }
 
-    const modelMatrix = new Float32Array([
-      1, 0, 0, 0,
-      0, 1, 0, 0,
-      0, 0, 1, 0,
-      0, 0, 0, 1,
-    ]);
+    const modelMatrix = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
 
     return {
       id: '',
@@ -225,8 +227,10 @@ export class Cubism5Adapter implements ICubismAdapter {
 }
 
 function isPointInMesh(px: number, py: number, vertices: Float32Array): boolean {
-  let minX = Infinity, maxX = -Infinity;
-  let minY = Infinity, maxY = -Infinity;
+  let minX = Infinity,
+    maxX = -Infinity;
+  let minY = Infinity,
+    maxY = -Infinity;
 
   for (let i = 0; i < vertices.length; i += 2) {
     const vx = vertices[i]!;

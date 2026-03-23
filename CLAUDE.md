@@ -38,16 +38,20 @@ pnpm run release      # Build + publish via changesets
 ## Key Technical Details
 
 ### Cubism SDK Loading
+
 Cubism cores are **proprietary** and loaded dynamically at runtime from CDN — never bundled. The `load-cubism-core` middleware handles this.
 
 ### Adapter Pattern
+
 Each Cubism version has its own adapter implementing `ICubismAdapter`:
+
 - `createModel()` — Parse .moc/.moc3, compute transform matrix
 - `setupTextures()` — Upload textures to GPU
 - `updateModel()` — Apply animations (breathing, blink, sway)
 - `drawModel()` — Execute draw (Cubism 2 self-renders; Cubism 5 uses our renderer)
 
 ### Cubism 2 Gotchas (adapter-cubism2)
+
 - Must set `UNPACK_FLIP_Y_WEBGL = 1` for textures (OpenGL UV convention)
 - Must call `setMatrix()` before `draw()` (pixel-to-clip-space transform)
 - Must clean WebGL state before `draw()` (SDK manages its own GL programs)
@@ -55,6 +59,7 @@ Each Cubism version has its own adapter implementing `ICubismAdapter`:
 - `Live2D.setGL(gl)` is a **global** call — only one context active at a time
 
 ### Pipeline Middleware Order
+
 1. `resolveUrl` — Normalize model source to full URL
 2. `fetchModelJson` — Fetch and parse model.json / model3.json
 3. `detectVersion` — Determine Cubism version, normalize settings
@@ -63,6 +68,7 @@ Each Cubism version has its own adapter implementing `ICubismAdapter`:
 6. `createModel` — Adapter creates the internal model
 
 ### Web Components (element package)
+
 - `<live2d-model>` — Single model display, configure via `src` attribute + `configure()` method
 - `<live2d-widget>` — Full widget with toolbar, speech bubbles, model switching
 - `autoload.ts` — Zero-config entry point for CDN `<script>` embedding
@@ -70,6 +76,7 @@ Each Cubism version has its own adapter implementing `ICubismAdapter`:
 ## Framework Integration
 
 The `<live2d-model>` Web Component works in all frameworks. Framework-specific guides live in `docs/frameworks/`:
+
 - **React**: Use `ref` + `configure()`, add JSX type declaration
 - **Vue / Nuxt**: Add `isCustomElement` config; Nuxt needs `<ClientOnly>`
 - **Next.js**: `'use client'` + `dynamic(import, { ssr: false })`

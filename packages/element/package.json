@@ -35,7 +35,12 @@
     }
   },
   "sideEffects": [
-    "./dist/autoload.*"
+    "./dist/autoload.*",
+    "./dist/index.*",
+    "./src/autoload.ts",
+    "./src/index.ts",
+    "./src/live2d-model.ts",
+    "./src/live2d-widget.ts"
   ],
   "files": [
     "dist"

@@ -22,7 +22,9 @@ export const fetchModelJSON: LoadMiddleware = async (ctx, next) => {
 
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error(`[Live2DLoader] Failed to fetch model settings: ${response.status} ${response.statusText}`);
+    throw new Error(
+      `[Live2DLoader] Failed to fetch model settings: ${response.status} ${response.statusText}`,
+    );
   }
 
   const json = await response.json();
@@ -34,7 +36,9 @@ export const fetchModelJSON: LoadMiddleware = async (ctx, next) => {
 
     const modelResp = await fetch(modelUrl);
     if (!modelResp.ok) {
-      throw new Error(`[Live2DLoader] Failed to fetch model from list: ${modelResp.status} ${modelResp.statusText} (${modelUrl})`);
+      throw new Error(
+        `[Live2DLoader] Failed to fetch model from list: ${modelResp.status} ${modelResp.statusText} (${modelUrl})`,
+      );
     }
 
     ctx.settingsJSON = (await modelResp.json()) as ModelSettingsJSON;
@@ -90,17 +94,12 @@ async function resolveModelFromList(list: ModelListJSON, baseUrl: string): Promi
 
   throw new Error(
     `[Live2DLoader] Could not resolve model "${modelPath}" from model list. ` +
-    `Tried:\n${candidates.map((c) => `  - ${c}`).join('\n')}`,
+      `Tried:\n${candidates.map((c) => `  - ${c}`).join('\n')}`,
   );
 }
 
 async function resolveSettingsFile(baseUrl: string): Promise<string> {
-  const candidates = [
-    'model3.json',
-    'model.json',
-    'index.json',
-    'model_list.json',
-  ];
+  const candidates = ['model3.json', 'model.json', 'index.json', 'model_list.json'];
 
   for (const name of candidates) {
     const url = baseUrl + name;
@@ -114,6 +113,6 @@ async function resolveSettingsFile(baseUrl: string): Promise<string> {
 
   throw new Error(
     `[Live2DLoader] Could not find model settings file in ${baseUrl}. ` +
-    `Tried: ${candidates.join(', ')}`,
+      `Tried: ${candidates.join(', ')}`,
   );
 }

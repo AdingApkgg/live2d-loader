@@ -8,7 +8,11 @@ export const resolveURL: LoadMiddleware = async (ctx, next) => {
 
   if (typeof source === 'string') {
     ctx.resolvedAsset = await ctx.assetResolver.resolve(source);
-  } else if (typeof source === 'object' && 'url' in source && typeof (source as any).url === 'string') {
+  } else if (
+    typeof source === 'object' &&
+    'url' in source &&
+    typeof (source as any).url === 'string'
+  ) {
     ctx.resolvedAsset = await ctx.assetResolver.resolve((source as any).url);
   } else if (typeof source === 'object' && 'version' in source) {
     // Already a ModelSettings object

@@ -27,7 +27,9 @@ import { createLive2DLoader } from '@live2d-loader/core';
 import { PixiRenderer } from '@live2d-loader/renderer-pixi';
 
 const loader = createLive2DLoader({
-  adapters: [/* your adapters */],
+  adapters: [
+    /* your adapters */
+  ],
   renderer: new PixiRenderer(),
 });
 

@@ -11,7 +11,7 @@ export interface Live2DEventMap {
   'model:destroy': { modelId: string };
 
   /** Interaction */
-  'hit': { modelId: string; hitArea: string; x: number; y: number };
+  hit: { modelId: string; hitArea: string; x: number; y: number };
   'pointer:enter': { modelId: string };
   'pointer:leave': { modelId: string };
 

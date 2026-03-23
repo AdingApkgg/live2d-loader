@@ -1,10 +1,6 @@
 import { LitElement, html, css, PropertyValues } from 'lit';
 import { customElement, property, state, query } from 'lit/decorators.js';
-import {
-  Live2DLoader,
-  createLive2DLoader,
-  type ICubismAdapter,
-} from '@live2d-loader/core';
+import { Live2DLoader, createLive2DLoader, type ICubismAdapter } from '@live2d-loader/core';
 import { WebGLRenderer } from '@live2d-loader/renderer-webgl';
 
 /**
@@ -58,7 +54,9 @@ export class Live2DModelElement extends LitElement {
       animation: spin 0.8s linear infinite;
     }
     @keyframes spin {
-      to { transform: rotate(360deg); }
+      to {
+        transform: rotate(360deg);
+      }
     }
   `;
 
@@ -125,10 +123,7 @@ export class Live2DModelElement extends LitElement {
   }
 
   /** Configure the element with adapters and optional renderer */
-  configure(options: {
-    adapters: ICubismAdapter[];
-    cubismCorePath?: string;
-  }): void {
+  configure(options: { adapters: ICubismAdapter[]; cubismCorePath?: string }): void {
     this.adapters = options.adapters;
     if (options.cubismCorePath) {
       this.cubismCore = options.cubismCorePath;
@@ -155,11 +150,13 @@ export class Live2DModelElement extends LitElement {
     this.loader.mount(this.canvas);
 
     this.loader.on('hit', (e) => {
-      this.dispatchEvent(new CustomEvent('hit', {
-        detail: e,
-        bubbles: true,
-        composed: true,
-      }));
+      this.dispatchEvent(
+        new CustomEvent('hit', {
+          detail: e,
+          bubbles: true,
+          composed: true,
+        }),
+      );
     });
 
     if (this.src) {
@@ -183,18 +180,22 @@ export class Live2DModelElement extends LitElement {
         cubismCorePath: this.cubismCore || undefined,
       });
 
-      this.dispatchEvent(new CustomEvent('load', {
-        detail: { modelId: this.currentModelId },
-        bubbles: true,
-        composed: true,
-      }));
+      this.dispatchEvent(
+        new CustomEvent('load', {
+          detail: { modelId: this.currentModelId },
+          bubbles: true,
+          composed: true,
+        }),
+      );
     } catch (err) {
       this.errorMessage = err instanceof Error ? err.message : String(err);
-      this.dispatchEvent(new CustomEvent('error', {
-        detail: { error: this.errorMessage },
-        bubbles: true,
-        composed: true,
-      }));
+      this.dispatchEvent(
+        new CustomEvent('error', {
+          detail: { error: this.errorMessage },
+          bubbles: true,
+          composed: true,
+        }),
+      );
     } finally {
       this.loading = false;
     }

@@ -53,10 +53,7 @@ export class MotionManager {
       const index = Math.floor(Math.random() * idleMotions.length);
       this.startMotion(modelId, this.idleMotionGroup, index, 'idle');
 
-      this.idleTimers.set(
-        modelId,
-        setTimeout(tick, this.idleInterval + Math.random() * 2000),
-      );
+      this.idleTimers.set(modelId, setTimeout(tick, this.idleInterval + Math.random() * 2000));
     };
 
     this.idleTimers.set(modelId, setTimeout(tick, this.idleInterval));
