@@ -9,15 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@live2d-loader/core": "workspace:*",
-    "@live2d-loader/adapter-cubism5": "workspace:*",
     "@live2d-loader/adapter-cubism2": "workspace:*",
-    "@live2d-loader/renderer-webgl": "workspace:*",
+    "@live2d-loader/adapter-cubism5": "workspace:*",
+    "@live2d-loader/core": "workspace:*",
     "@live2d-loader/element": "workspace:*",
-    "lit": "^3.2.0"
+    "@live2d-loader/renderer-webgl": "workspace:*",
+    "lit": "^3.3.2"
   },
   "devDependencies": {
-    "vite": "^6.0.0",
-    "typescript": "^5.7.0"
+    "typescript": "^5.9.3",
+    "vite": "^8.0.2"
   }
 }

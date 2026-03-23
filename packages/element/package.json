@@ -11,7 +11,13 @@
   },
   "homepage": "https://github.com/AdingApkgg/live2d-loader#readme",
   "bugs": "https://github.com/AdingApkgg/live2d-loader/issues",
-  "keywords": ["live2d", "web-component", "lit", "widget", "custom-element"],
+  "keywords": [
+    "live2d",
+    "web-component",
+    "lit",
+    "widget",
+    "custom-element"
+  ],
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -27,7 +33,9 @@
       "import": "./dist/autoload.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -37,10 +45,10 @@
   "dependencies": {
     "@live2d-loader/core": "workspace:*",
     "@live2d-loader/renderer-webgl": "workspace:*",
-    "lit": "^3.2.0"
+    "lit": "^3.3.2"
   },
   "devDependencies": {
-    "tsup": "^8.0.0",
-    "typescript": "^5.7.0"
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
   }
 }

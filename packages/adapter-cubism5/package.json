@@ -11,7 +11,14 @@
   },
   "homepage": "https://github.com/AdingApkgg/live2d-loader#readme",
   "bugs": "https://github.com/AdingApkgg/live2d-loader/issues",
-  "keywords": ["live2d", "cubism5", "cubism4", "cubism", "adapter", "moc3"],
+  "keywords": [
+    "live2d",
+    "cubism5",
+    "cubism4",
+    "cubism",
+    "adapter",
+    "moc3"
+  ],
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -23,7 +30,9 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -34,7 +43,7 @@
     "@live2d-loader/core": "workspace:*"
   },
   "devDependencies": {
-    "tsup": "^8.0.0",
-    "typescript": "^5.7.0"
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
   }
 }
