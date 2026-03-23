@@ -5,7 +5,17 @@ Built-in WebGL2 renderer for [live2d-loader](https://github.com/AdingApkgg/live2
 ## Install
 
 ```bash
+# npm
 npm install @live2d-loader/renderer-webgl
+
+# yarn
+yarn add @live2d-loader/renderer-webgl
+
+# pnpm
+pnpm add @live2d-loader/renderer-webgl
+
+# bun
+bun add @live2d-loader/renderer-webgl
 ```
 
 ## Usage

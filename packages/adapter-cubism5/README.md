@@ -5,7 +5,17 @@ Cubism 4/5 adapter for [live2d-loader](https://github.com/AdingApkgg/live2d-load
 ## Install
 
 ```bash
+# npm
 npm install @live2d-loader/adapter-cubism5
+
+# yarn
+yarn add @live2d-loader/adapter-cubism5
+
+# pnpm
+pnpm add @live2d-loader/adapter-cubism5
+
+# bun
+bun add @live2d-loader/adapter-cubism5
 ```
 
 ## Usage

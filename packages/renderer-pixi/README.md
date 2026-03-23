@@ -7,7 +7,17 @@ PixiJS 8 renderer for [live2d-loader](https://github.com/AdingApkgg/live2d-loade
 ## Install
 
 ```bash
+# npm
 npm install @live2d-loader/renderer-pixi pixi.js
+
+# yarn
+yarn add @live2d-loader/renderer-pixi pixi.js
+
+# pnpm
+pnpm add @live2d-loader/renderer-pixi pixi.js
+
+# bun
+bun add @live2d-loader/renderer-pixi pixi.js
 ```
 
 ## Usage

@@ -3,7 +3,17 @@
 ## Install
 
 ```bash
+# npm
 npm install @live2d-loader/core @live2d-loader/element @live2d-loader/renderer-webgl @live2d-loader/adapter-cubism2
+
+# yarn
+yarn add @live2d-loader/core @live2d-loader/element @live2d-loader/renderer-webgl @live2d-loader/adapter-cubism2
+
+# pnpm
+pnpm add @live2d-loader/core @live2d-loader/element @live2d-loader/renderer-webgl @live2d-loader/adapter-cubism2
+
+# bun
+bun add @live2d-loader/core @live2d-loader/element @live2d-loader/renderer-webgl @live2d-loader/adapter-cubism2
 ```
 
 ## Web Component Usage (App Router)

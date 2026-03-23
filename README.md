@@ -46,7 +46,17 @@ renderer-webgl     renderer-pixi
 ### Core API
 
 ```bash
+# npm
 npm install @live2d-loader/core @live2d-loader/renderer-webgl @live2d-loader/adapter-cubism2
+
+# yarn
+yarn add @live2d-loader/core @live2d-loader/renderer-webgl @live2d-loader/adapter-cubism2
+
+# pnpm
+pnpm add @live2d-loader/core @live2d-loader/renderer-webgl @live2d-loader/adapter-cubism2
+
+# bun
+bun add @live2d-loader/core @live2d-loader/renderer-webgl @live2d-loader/adapter-cubism2
 ```
 
 ```ts
@@ -66,7 +76,17 @@ await loader.loadModel('https://cdn.example.com/model/index.json');
 ### Web Component
 
 ```bash
+# npm
 npm install @live2d-loader/element @live2d-loader/adapter-cubism2
+
+# yarn
+yarn add @live2d-loader/element @live2d-loader/adapter-cubism2
+
+# pnpm
+pnpm add @live2d-loader/element @live2d-loader/adapter-cubism2
+
+# bun
+bun add @live2d-loader/element @live2d-loader/adapter-cubism2
 ```
 
 ```html
@@ -85,18 +105,61 @@ const el = document.querySelector('live2d-model');
 el.configure({ adapters: [new Cubism2Adapter()] });
 ```
 
-### CDN One-liner
+### CDN
 
-Embed a Live2D widget on any page with a single script tag:
+No build tools needed — load directly from a CDN.
+
+#### Script Tag (autoload)
+
+Drop a single `<script>` into any HTML page to embed a Live2D widget:
 
 ```html
+<!-- jsdelivr -->
 <script src="https://cdn.jsdelivr.net/npm/@live2d-loader/element/dist/autoload.js"></script>
+
+<!-- unpkg -->
+<script src="https://unpkg.com/@live2d-loader/element/dist/autoload.js"></script>
+```
+
+Configure the widget via a global variable (place **before** the script tag or in a separate `<script>`):
+
+```html
 <script>
   window.live2dWidgetConfig = {
     src: 'https://cdn.example.com/model/index.json',
     position: 'right',
   };
 </script>
+```
+
+#### ES Module
+
+Use `<script type="module">` for modern browsers, Deno, or other ESM runtimes:
+
+```html
+<script type="module">
+  // esm.sh
+  import 'https://esm.sh/@live2d-loader/element';
+
+  // esm.run (jsdelivr ESM)
+  import 'https://esm.run/@live2d-loader/element';
+
+  // jsdelivr (+esm)
+  import 'https://cdn.jsdelivr.net/npm/@live2d-loader/element/+esm';
+
+  // unpkg (?module)
+  import 'https://unpkg.com/@live2d-loader/element?module';
+</script>
+```
+
+#### Version Pinning
+
+Lock to a specific version to avoid unexpected breaking changes:
+
+```
+https://cdn.jsdelivr.net/npm/@live2d-loader/element@0.1.0/dist/autoload.js
+https://unpkg.com/@live2d-loader/element@0.1.0/dist/autoload.js
+https://esm.sh/@live2d-loader/element@0.1.0
 ```
 
 ## Framework Guides

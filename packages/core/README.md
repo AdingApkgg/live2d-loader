@@ -5,7 +5,17 @@ Framework-agnostic core engine for [live2d-loader](https://github.com/AdingApkgg
 ## Install
 
 ```bash
+# npm
 npm install @live2d-loader/core
+
+# yarn
+yarn add @live2d-loader/core
+
+# pnpm
+pnpm add @live2d-loader/core
+
+# bun
+bun add @live2d-loader/core
 ```
 
 ## Usage
