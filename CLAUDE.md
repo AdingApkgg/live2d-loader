@@ -63,6 +63,18 @@ Each Cubism version has its own adapter implementing `ICubismAdapter`:
 - `<live2d-widget>` — Full widget with toolbar, speech bubbles, model switching
 - `autoload.ts` — Zero-config entry point for CDN `<script>` embedding
 
+## Framework Integration
+
+The `<live2d-model>` Web Component works in all frameworks. Framework-specific guides live in `docs/frameworks/`:
+- **React**: Use `ref` + `configure()`, add JSX type declaration
+- **Vue / Nuxt**: Add `isCustomElement` config; Nuxt needs `<ClientOnly>`
+- **Next.js**: `'use client'` + `dynamic(import, { ssr: false })`
+- **SolidJS**: Native support, use `attr:` / `on:` prefixes
+- **Svelte / SvelteKit**: Native support; SvelteKit needs `browser` guard
+- **Angular**: Add `CUSTOM_ELEMENTS_SCHEMA`
+
+Core API (`createLive2DLoader` with `<canvas>`) works in any framework with no special setup beyond SSR guards.
+
 ## Style Conventions
 
 - TypeScript strict mode, ES2022 target

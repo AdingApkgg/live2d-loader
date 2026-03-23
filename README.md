@@ -99,6 +99,22 @@ Embed a Live2D widget on any page with a single script tag:
 </script>
 ```
 
+## Framework Guides
+
+The `<live2d-model>` Web Component works in all frameworks. See the guide for your framework:
+
+| Framework | Guide | Key Notes |
+|-----------|-------|-----------|
+| React | [docs/frameworks/react.md](./docs/frameworks/react.md) | Use `ref` for `configure()`; JSX type declaration needed |
+| Vue | [docs/frameworks/vue.md](./docs/frameworks/vue.md) | Add `isCustomElement` compiler option |
+| Nuxt | [docs/frameworks/nuxt.md](./docs/frameworks/nuxt.md) | Wrap with `<ClientOnly>` for SSR |
+| Next.js | [docs/frameworks/nextjs.md](./docs/frameworks/nextjs.md) | Use `'use client'` + `dynamic(..., { ssr: false })` |
+| SolidJS | [docs/frameworks/solidjs.md](./docs/frameworks/solidjs.md) | Native custom element support |
+| Svelte | [docs/frameworks/svelte.md](./docs/frameworks/svelte.md) | Works out of the box |
+| Angular | [docs/frameworks/angular.md](./docs/frameworks/angular.md) | Add `CUSTOM_ELEMENTS_SCHEMA` |
+
+You can also use the Core API (`createLive2DLoader`) directly with a `<canvas>` in any framework — see each guide for examples.
+
 ## Events
 
 The loader emits typed events you can subscribe to:
