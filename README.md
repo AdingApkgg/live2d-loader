@@ -1,5 +1,11 @@
 # live2d-loader
 
+[![npm version](https://img.shields.io/npm/v/@live2d-loader/core?label=core)](https://www.npmjs.com/package/@live2d-loader/core)
+[![npm version](https://img.shields.io/npm/v/@live2d-loader/element?label=element)](https://www.npmjs.com/package/@live2d-loader/element)
+[![CI](https://github.com/AdingApkgg/live2d-loader/actions/workflows/ci.yml/badge.svg)](https://github.com/AdingApkgg/live2d-loader/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+
 A layered, pluggable Live2D model loader for the web. Supports both **Cubism 2** (legacy `.moc`) and **Cubism 4/5** (modern `.moc3`) models with a unified API.
 
 > **Note:** This is an unofficial community project and is not affiliated with Live2D Inc.

@@ -30,9 +30,13 @@
     },
     "./autoload": {
       "types": "./dist/autoload.d.ts",
-      "import": "./dist/autoload.js"
+      "import": "./dist/autoload.js",
+      "require": "./dist/autoload.cjs"
     }
   },
+  "sideEffects": [
+    "./dist/autoload.*"
+  ],
   "files": [
     "dist"
   ],

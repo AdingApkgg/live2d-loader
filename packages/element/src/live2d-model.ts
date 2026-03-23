@@ -4,7 +4,6 @@ import {
   Live2DLoader,
   createLive2DLoader,
   type ICubismAdapter,
-  type Live2DLoaderOptions,
 } from '@live2d-loader/core';
 import { WebGLRenderer } from '@live2d-loader/renderer-webgl';
 

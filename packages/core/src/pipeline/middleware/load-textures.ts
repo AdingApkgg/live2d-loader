@@ -28,7 +28,7 @@ function loadImage(url: string): Promise<HTMLImageElement> {
     const img = new Image();
     img.crossOrigin = 'anonymous';
     img.onload = () => resolve(img);
-    img.onerror = (e) => reject(new Error(`[Live2DLoader] Failed to load texture: ${url}`));
+    img.onerror = () => reject(new Error(`[Live2DLoader] Failed to load texture: ${url}`));
     img.src = url;
   });
 }

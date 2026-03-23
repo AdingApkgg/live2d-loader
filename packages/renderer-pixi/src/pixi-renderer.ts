@@ -12,7 +12,6 @@ import {
   MeshGeometry,
   Texture,
   ImageSource,
-  BLEND_MODES,
 } from 'pixi.js';
 
 /**

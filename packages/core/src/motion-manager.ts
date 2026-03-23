@@ -1,4 +1,3 @@
-import type { InternalModel } from './types/internal-model.js';
 import type { MotionDefinition } from './types/model.js';
 import { EventBus } from './events.js';
 

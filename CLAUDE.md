@@ -15,7 +15,7 @@ packages/
   adapter-cubism2/  # @live2d-loader/adapter-cubism2 — Cubism 2.x (.moc)
   adapter-cubism5/  # @live2d-loader/adapter-cubism5 — Cubism 4/5 (.moc3)
   renderer-webgl/   # @live2d-loader/renderer-webgl — WebGL2 renderer
-  renderer-pixi/    # @live2d-loader/renderer-pixi — PixiJS 8 (placeholder)
+  renderer-pixi/    # @live2d-loader/renderer-pixi — PixiJS 8 renderer (alternative)
   playground/       # Dev demo app (private, not published)
 ```
 
@@ -25,6 +25,10 @@ packages/
 pnpm install          # Install deps
 pnpm run dev          # Start playground (Vite dev server)
 pnpm run build        # Build all packages
+pnpm run test         # Run tests (vitest)
+pnpm run lint         # Lint with ESLint
+pnpm run format       # Format with Prettier
+pnpm run format:check # Check formatting (CI)
 pnpm run typecheck    # Type-check all packages
 pnpm run clean        # Remove dist/ from all packages
 pnpm changeset        # Create a changeset for versioning

@@ -60,15 +60,15 @@ interface CubismCoreModel {
   release(): void;
 }
 
-const BLEND_NORMAL = 0;
+const _BLEND_NORMAL = 0;
 const BLEND_ADDITIVE = 1 << 0;
 const BLEND_MULTIPLICATIVE = 1 << 1;
 const IS_VISIBLE = 1 << 0;
-const VISIBILITY_CHANGED = 1 << 0;
-const OPACITY_CHANGED = 1 << 1;
-const DRAW_ORDER_CHANGED = 1 << 2;
-const RENDER_ORDER_CHANGED = 1 << 3;
-const VERTEX_POSITIONS_CHANGED = 1 << 4;
+const _VISIBILITY_CHANGED = 1 << 0;
+const _OPACITY_CHANGED = 1 << 1;
+const _DRAW_ORDER_CHANGED = 1 << 2;
+const _RENDER_ORDER_CHANGED = 1 << 3;
+const _VERTEX_POSITIONS_CHANGED = 1 << 4;
 
 export class Cubism5Adapter implements ICubismAdapter {
   readonly version: CubismVersion = 'cubism5';

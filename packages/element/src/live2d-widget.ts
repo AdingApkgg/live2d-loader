@@ -7,7 +7,7 @@ import type { Live2DModelElement } from './live2d-model.js';
 /**
  * Tip message configuration
  */
-interface TipMessage {
+interface _TipMessage {
   text: string;
   duration?: number;
 }

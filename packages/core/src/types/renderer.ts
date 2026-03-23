@@ -1,5 +1,3 @@
-import type { InternalModel } from './internal-model.js';
-
 /** Blend modes matching Live2D Cubism specifications */
 export enum BlendMode {
   Normal = 0,
