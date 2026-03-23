@@ -1,6 +1,6 @@
 {
   "name": "@live2d-loader/element",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Lit Web Components for Live2D loader — full UI with widget, dialog, toolbar",
   "license": "MIT",
   "author": "AdingApkgg",
@@ -58,6 +58,6 @@
   },
   "devDependencies": {
     "tsup": "^8.5.1",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2"
   }
 }
