@@ -1,0 +1,51 @@
+---
+description: Project-wide conventions for the live2d-loader monorepo
+globs: **/*
+---
+
+# live2d-loader Project Rules
+
+## Architecture
+
+This is a pnpm monorepo with a layered package structure:
+
+- `@live2d-loader/core` — Framework-agnostic engine (pipeline, events, model management). No UI dependencies.
+- `@live2d-loader/element` — Lit 3.x Web Components (`<live2d-model>`, `<live2d-widget>`). Depends on core + renderer-webgl.
+- `@live2d-loader/adapter-cubism2` — Cubism 2.x (`.moc`) adapter. Depends on core.
+- `@live2d-loader/adapter-cubism5` — Cubism 4/5 (`.moc3`) adapter. Depends on core.
+- `@live2d-loader/renderer-webgl` — Built-in WebGL2 renderer. Depends on core.
+- `@live2d-loader/renderer-pixi` — PixiJS 8 renderer (placeholder). Depends on core.
+- `@live2d-loader/playground` — Vite dev app (private, not published).
+
+## Key Design Decisions
+
+- **Dynamic Core Loading**: Cubism SDK cores (`live2d.min.js`, `live2dcubismcore.min.js`) are loaded at runtime from CDN, never bundled. They are proprietary.
+- **Strategy + Adapter Pattern**: `ICubismAdapter` interface lets adapters handle version-specific model creation, texture setup, update, and draw.
+- **Cubism 2 Self-Rendering**: Cubism 2 SDK manages its own GL state and draw calls. The adapter must clean WebGL state (unbind VAO, `gl.useProgram(null)`, disable vertex attribs) before calling `cm.draw()`. Must call `cm.setMatrix()` before draw. Must set `gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1)` when uploading textures.
+- **Pipeline / Middleware**: Model loading goes through a middleware pipeline (resolve URL → fetch JSON → detect version → load core → load textures → create model).
+- **Event-Driven**: `EventBus` with typed events (`load:start`, `load:complete`, `load:error`, `hit`, `render:frame`, `render:error`).
+
+## Code Style
+
+- TypeScript strict mode, target ES2022
+- ESM-first (`"type": "module"`), dual ESM/CJS output via tsup
+- Lit decorators (`@customElement`, `@property`, `@state`, `@query`) with `experimentalDecorators: true` and `useDefineForClassFields: false`
+- No default exports — use named exports only
+- Interfaces prefixed with `I` only for adapter/renderer contracts (`ICubismAdapter`, `IRenderer`)
+- Avoid unnecessary comments — code should be self-documenting
+
+## Build
+
+- `pnpm run build` — builds all packages (tsup for libs, vite for playground)
+- `pnpm run dev` — starts playground dev server
+- `pnpm run typecheck` — type-check all packages
+- Packages publish `dist/` only (`"files": ["dist"]`)
+- Internal deps use `workspace:*` (pnpm resolves on publish)
+
+## Dependencies
+
+- Node >= 18, pnpm >= 9
+- Lit 3.x for web components
+- tsup 8.x for library bundling
+- Vite 6.x for playground
+- Changesets for version management

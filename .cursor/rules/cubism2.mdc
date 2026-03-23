@@ -1,0 +1,37 @@
+---
+description: Rules for working with Cubism 2 adapter code
+globs: packages/adapter-cubism2/**/*
+---
+
+# Cubism 2 Adapter Rules
+
+## Critical WebGL State Requirements
+
+When working with the Cubism 2 adapter, always remember:
+
+1. **UNPACK_FLIP_Y_WEBGL** — MUST set `gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1)` when uploading textures. The SDK's UV coordinates expect OpenGL convention (Y bottom-to-top). Without this, the model appears "shattered".
+
+2. **setMatrix()** — MUST call `coreModel.setMatrix(matrix)` before `coreModel.draw()`. The matrix maps model pixel coordinates to clip space. Without this, the model is invisible.
+
+3. **GL State Cleanup** — Before `coreModel.draw()`, clean the GL state:
+   - `gl2.bindVertexArray(null)` (if WebGL2)
+   - `gl.useProgram(null)`
+   - Disable vertex attrib arrays
+   - Set blend: `gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA)`
+   - Set `gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 1)`
+
+4. **loadParam/saveParam** — Use `coreModel.loadParam()` at the start of update, modify parameters, then `coreModel.saveParam()` to preserve base state. Add animation on top after save.
+
+5. **Live2D Global State** — `Live2D.setGL(gl)` and `coreModel.setGL(gl)` must be called before `draw()`. The SDK uses global state.
+
+## Model Matrix Calculation
+
+The matrix maps model canvas pixels to clip space [-1, 1]:
+- `scaleX = 2 / canvasWidth`, `scaleY = -scaleX` (Y flip)
+- `translateX = -1`, `translateY` computed from scale
+- Layout overrides (`width`, `height`, `center_x`, `center_y`, `x`, `y`) from model.json adjust the matrix
+
+## Texture Setup
+
+- Use `gl.LINEAR_MIPMAP_NEAREST` for min filter + `gl.generateMipmap()`
+- Reset `UNPACK_FLIP_Y_WEBGL` to 0 after texture upload to avoid affecting other renderers
