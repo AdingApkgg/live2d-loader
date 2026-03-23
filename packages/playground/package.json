@@ -1,0 +1,23 @@
+{
+  "name": "@live2d-loader/playground",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@live2d-loader/core": "workspace:*",
+    "@live2d-loader/adapter-cubism5": "workspace:*",
+    "@live2d-loader/adapter-cubism2": "workspace:*",
+    "@live2d-loader/renderer-webgl": "workspace:*",
+    "@live2d-loader/element": "workspace:*",
+    "lit": "^3.2.0"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0",
+    "typescript": "^5.7.0"
+  }
+}

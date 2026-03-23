@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live2D Loader Playground</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header h1 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .header .badge {
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 32px auto;
+      padding: 0 24px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .card h2 {
+      font-size: 16px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .demo-area {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .controls {
+      flex: 1;
+    }
+
+    .control-group {
+      margin-bottom: 16px;
+    }
+
+    .control-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: #666;
+    }
+
+    .control-group input[type="text"],
+    .control-group select {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 13px;
+      background: #fafafa;
+    }
+
+    .control-group input[type="text"]:focus,
+    .control-group select:focus {
+      outline: none;
+      border-color: #4a90d9;
+      box-shadow: 0 0 0 2px rgba(74, 144, 217, 0.15);
+    }
+
+    button.primary {
+      background: #4a90d9;
+      color: #fff;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button.primary:hover {
+      background: #3a7bc8;
+    }
+
+    .log-panel {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: 'SF Mono', Monaco, Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.6;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .log-panel .log-entry {
+      padding: 2px 0;
+    }
+
+    .log-panel .log-info { color: #6a9955; }
+    .log-panel .log-error { color: #f48771; }
+    .log-panel .log-event { color: #569cd6; }
+
+    .canvas-container {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%),
+                  linear-gradient(-45deg, #f0f0f0 25%, transparent 25%),
+                  linear-gradient(45deg, transparent 75%, #f0f0f0 75%),
+                  linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+      background-size: 16px 16px;
+      background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+    }
+
+    .arch-diagram {
+      font-size: 13px;
+      line-height: 1.5;
+      padding: 12px;
+      background: #fafafa;
+      border-radius: 8px;
+      border: 1px dashed #ddd;
+    }
+
+    .arch-diagram code {
+      font-family: 'SF Mono', Monaco, Consolas, monospace;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Live2D Loader</h1>
+    <span class="badge">v0.1.0</span>
+  </div>
+
+  <div class="content">
+    <!-- API Usage Demo -->
+    <div class="card">
+      <h2>Core API Demo</h2>
+      <div class="demo-area">
+        <div class="controls">
+          <div class="control-group">
+            <label>Model Source URL</label>
+            <input type="text" id="modelUrl" placeholder="https://cdn.example.com/models/shizuku/model3.json" />
+          </div>
+          <div class="control-group">
+            <label>Renderer</label>
+            <select id="rendererSelect">
+              <option value="webgl">WebGL2 (built-in)</option>
+            </select>
+          </div>
+          <button class="primary" id="loadBtn">Load Model</button>
+        </div>
+        <div class="canvas-container">
+          <canvas id="demoCanvas" width="300" height="400"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Web Component Demo -->
+    <div class="card">
+      <h2>Web Component Demo</h2>
+      <p style="font-size: 13px; color: #666; margin-bottom: 12px;">
+        Use the &lt;live2d-model&gt; element directly in HTML.
+        Configure adapters via JavaScript.
+      </p>
+      <div class="demo-area">
+        <div class="controls">
+          <div class="control-group">
+            <label>Model Source URL</label>
+            <input type="text" id="wcModelUrl" placeholder="https://cdn.example.com/models/model.json" />
+          </div>
+          <button class="primary" id="wcLoadBtn">Load Model</button>
+        </div>
+        <div class="canvas-container">
+          <live2d-model id="wcDemo" width="300" height="400"></live2d-model>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event Log -->
+    <div class="card">
+      <h2>Event Log</h2>
+      <div class="log-panel" id="logPanel">
+        <div class="log-entry log-info">[ready] Playground initialized</div>
+      </div>
+    </div>
+
+    <!-- Architecture -->
+    <div class="card">
+      <h2>Architecture</h2>
+      <div class="arch-diagram">
+        <pre><code>@live2d-loader/element        Lit Web Components (UI layer)
+        |
+@live2d-loader/core           Pure TS engine (framework-agnostic)
+        |
+   +---------+-----------+
+   |                     |
+@live2d-loader/        @live2d-loader/
+ adapter-cubism2        adapter-cubism5
+                         |
+   +---------+-----------+
+   |                     |
+@live2d-loader/        @live2d-loader/
+ renderer-webgl         renderer-pixi</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

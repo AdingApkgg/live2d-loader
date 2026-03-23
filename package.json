@@ -1,0 +1,33 @@
+{
+  "name": "live2d-loader",
+  "private": true,
+  "version": "0.0.0",
+  "description": "A layered, pluggable Live2D loader with Web Component UI",
+  "type": "module",
+  "license": "MIT",
+  "author": "AdingApkgg",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AdingApkgg/live2d-loader.git"
+  },
+  "homepage": "https://github.com/AdingApkgg/live2d-loader#readme",
+  "bugs": "https://github.com/AdingApkgg/live2d-loader/issues",
+  "scripts": {
+    "dev": "pnpm --filter @live2d-loader/playground dev",
+    "build": "pnpm -r --filter './packages/*' build",
+    "lint": "eslint packages/",
+    "typecheck": "pnpm -r typecheck",
+    "clean": "pnpm -r clean",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm run build && changeset publish"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@9.15.4",
+  "devDependencies": {
+    "@changesets/cli": "^2.30.0"
+  }
+}
